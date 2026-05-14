@@ -32,9 +32,9 @@ gunzip -c libz-1.2.1-pa1.1.tgz | tar xvf -
 ```
 5. Setup libz
 ```bash
-mv libz-1.2.1.sl libz.sl
-cp libz.sl /usr/local/lib
-ln -s /usr /pro # create sym link
+mv libz-1.2.1.sl libz.sl            # rename
+cp libz.sl /usr/local/lib           # copy to lib
+ln -s /usr /pro                     # create sym link
 chmod 755 /usr/local/lib/libz.sl
 ```
 6. Install openssl
@@ -57,7 +57,7 @@ cp /opt/openssh/sbin/prngd /dev/urandom
 ```
 10. Configure SSH
 ```bash
-vi /usr/local/etc/sshd_config
+vi /usr/local/etc/sshd_config # edit to have settings below, can look at sys2 or sys6 as a reference
 ```
 >Port 22
 
@@ -108,17 +108,17 @@ chmod 644 /usr/local/etc/ssh_host_*_key.pub
 ```
 12. Configure and Start SSH Service
 ```bash
-vi /etc/services
+vi /etc/services # add the following
 ```
 > ssh 22/tcp
 
 ```bash
-vi /etc/inetd.conf
+vi /etc/inetd.conf # add the following
 ```
 > ssh stream tcp nowait root /usr/local/sbin/sshd -I
 
 ```bash
-vi /var/adm/inetd.sec
+vi /var/adm/inetd.sec # add the following
 ```
 > ssh:ALL:ALL:NONE
 
