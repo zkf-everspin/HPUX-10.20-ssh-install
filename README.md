@@ -69,7 +69,7 @@ vi /usr/local/etc/sshd_config # edit to have settings below, can look at sys2 or
 
 >HostKey /usr/local/etc/ssh_host_dsa_key
 
->PermitRootLogin yes
+>PermitRootLogin no
 
 >PubkeyAuthentication yes
 
