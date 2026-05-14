@@ -61,25 +61,45 @@ vi /usr/local/etc/sshd_config
 ```
 + UNCOMMENT/CHANGE/ADD the following:
 >Port 22
+
 >Protocol 2
+
 >AddressFamily inet
+
 >HostKey /usr/local/etc/ssh_host_rsa_key
+
 >HostKey /usr/local/etc/ssh_host_dsa_key
+
 >PermitRootLogin yes
+
 >PubkeyAuthentication yes
+
 >AuthorizedKeysFile .ssh/authorized_keys
+
 >PasswordAuthentication yes
+
 >PermitEmptyPasswords yes
+
 >AllowTcpForwarding no
+
 >X11Forwarding yes
+
 >X11DisplayOffset 10
+
 >X11UseLocalhost no
+
 >TCPKeepAlive yes
+
 >PermitUserEnvironment yes
+
 >Compression yes
+
 >UseDNS yes
+
 >Subsystem   sftp    /usr/local/libexec/sftp-server
+
 >XAuthLocation /usr/bin/X11/xauth
+
 
 11. Set permissions on configs (as root)
 ```bash
