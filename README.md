@@ -1,8 +1,5 @@
 
-# HP83k - SSH INSTALL GUIDE
-
-A brief description of what this project does and who it's for
-
+# HP-UX 10.20b - SSH INSTALL GUIDE
 
 ## Installation
 
@@ -86,3 +83,24 @@ UseDNS yes
 Subsystem   sftp    /usr/local/libexec/sftp-server
 XAuthLocation /usr/bin/X11/xauth
 ```
+11. Set permissions on configs (as root)
+```bash
+chmod 644 /usr/local/etc/sshd_config
+chmod 600 /usr/local/etc/ssh_host_*_key
+chmod 644 /usr/local/etc/ssh_host_*_key.pub
+```
+12. Configure and Start SSH Service
+```bash
+vi /etc/services
+ADD THIS -> # ssh 22/tcp
+vi /etc/inetd.conf
+ADD THIS -> # ssh stream tcp nowait root /usr/local/sbin/sshd -I
+vi /var/adm/inetd.sec
+ADD THIS -> # ssh:ALL:ALL:NONE
+```
+13. Restart inetd to load SSH
+```bash
+inetd -c
+```
+
+> Testing
