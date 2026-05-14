@@ -59,30 +59,28 @@ cp /opt/openssh/sbin/prngd /dev/urandom
 ```bash
 vi /usr/local/etc/sshd_config
 ```
++ UNCOMMENT/CHANGE/ADD the following:
+>Port 22
+>Protocol 2
+>AddressFamily inet
+>HostKey /usr/local/etc/ssh_host_rsa_key
+>HostKey /usr/local/etc/ssh_host_dsa_key
+>PermitRootLogin yes
+>PubkeyAuthentication yes
+>AuthorizedKeysFile .ssh/authorized_keys
+>PasswordAuthentication yes
+>PermitEmptyPasswords yes
+>AllowTcpForwarding no
+>X11Forwarding yes
+>X11DisplayOffset 10
+>X11UseLocalhost no
+>TCPKeepAlive yes
+>PermitUserEnvironment yes
+>Compression yes
+>UseDNS yes
+>Subsystem   sftp    /usr/local/libexec/sftp-server
+>XAuthLocation /usr/bin/X11/xauth
 
-```
-# The following need to be either uncommented, edited or added to sshd_config
-Port 22
-Protocol 2
-AddressFamily inet
-HostKey /usr/local/etc/ssh_host_rsa_key
-HostKey /usr/local/etc/ssh_host_dsa_key
-PermitRootLogin yes
-PubkeyAuthentication yes
-AuthorizedKeysFile .ssh/authorized_keys
-PasswordAuthentication yes
-PermitEmptyPasswords yes
-AllowTcpForwarding no
-X11Forwarding yes
-X11DisplayOffset 10
-X11UseLocalhost no
-TCPKeepAlive yes
-PermitUserEnvironment yes
-Compression yes
-UseDNS yes
-Subsystem   sftp    /usr/local/libexec/sftp-server
-XAuthLocation /usr/bin/X11/xauth
-```
 11. Set permissions on configs (as root)
 ```bash
 chmod 644 /usr/local/etc/sshd_config
@@ -92,15 +90,18 @@ chmod 644 /usr/local/etc/ssh_host_*_key.pub
 12. Configure and Start SSH Service
 ```bash
 vi /etc/services
-ADD THIS -> # ssh 22/tcp
-vi /etc/inetd.conf
-ADD THIS -> # ssh stream tcp nowait root /usr/local/sbin/sshd -I
-vi /var/adm/inetd.sec
-ADD THIS -> # ssh:ALL:ALL:NONE
 ```
+ADD THIS -> # ssh 22/tcp
+```bash
+vi /etc/inetd.conf
+```
+> ssh stream tcp nowait root /usr/local/sbin/sshd -I
+```bash
+vi /var/adm/inetd.sec
+```
+> ssh:ALL:ALL:NONE
+
 13. Restart inetd to load SSH
 ```bash
 inetd -c
 ```
-
-> Testing
