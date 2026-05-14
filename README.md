@@ -59,7 +59,6 @@ cp /opt/openssh/sbin/prngd /dev/urandom
 ```bash
 vi /usr/local/etc/sshd_config
 ```
-+ UNCOMMENT/CHANGE/ADD the following:
 >Port 22
 
 >Protocol 2
@@ -111,11 +110,13 @@ chmod 644 /usr/local/etc/ssh_host_*_key.pub
 ```bash
 vi /etc/services
 ```
-ADD THIS -> # ssh 22/tcp
+> ssh 22/tcp
+
 ```bash
 vi /etc/inetd.conf
 ```
 > ssh stream tcp nowait root /usr/local/sbin/sshd -I
+
 ```bash
 vi /var/adm/inetd.sec
 ```
